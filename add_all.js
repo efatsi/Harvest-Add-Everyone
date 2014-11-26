@@ -39,8 +39,8 @@ postTheData = function() {
   }
 }
 
-grayOutScreen = function() {
-  $("html").append('<div style="position: absolute;top: 50%;left: 50%;width: 300px;line-height: 200px;height: 200px;margin-left: -150px;margin-top: -100px;background-color:#31C1C6;text-align: center;border-radius: 5px;z-index: 10;box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);">Percent complete: <span id="percent-complete">0</span>%</div>')
+addModal = function() {
+  $("html").append('<div style="height: 100%;left: 0;position: fixed;top: 0;width: 100%;z-index: 9999;background-color: rgba(0,0,0,0.5);"><div style="position: absolute;top: 35%;left: 50%;width: 300px;line-height: 200px;height: 200px;margin-left: -150px;margin-top: -100px;background-color: #31C1C6;text-align: center;border-radius: 5px;z-index: 10;">Percent complete: <span id="percent-complete">0</span>%</div></div>')
 }
 
 addEveryone = function() {
@@ -67,8 +67,19 @@ addAll = function(lab) {
   postTheData()
 }
 
+commenceAdding = function(e, group) {
+  e.preventDefault()
+  addModal()
+
+  if (group == "Everyone") {
+    addEveryone()
+  } else {
+    addAll(group)
+  }
+}
+
 div = $("#add_person_link")
-div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-everyone" href="#">+ All</a>')
+div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-everyone" href="#">+ Everyone</a>')
 div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-devs" href="#">+ DEV</a>')
 div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-feds" href="#">+ FED</a>')
 div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-ux" href="#">+ UX</a>')
@@ -78,63 +89,33 @@ div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-strat
 div.append('<a class="btn-submit btn-primary" style="float: none;" id="add-da" href="#">+ D&A</a>')
 
 $("#add-everyone").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addEveryone()
+  commenceAdding(e, "Everyone")
 })
 
 $("#add-devs").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Developers")
+  commenceAdding(e, "Developers")
 })
 
 $("#add-feds").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Front-End Developers")
+  commenceAdding(e, "Front-End Developers")
 })
 
 $("#add-ux").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("User Experience")
+  commenceAdding(e, "User Experience")
 })
 
 $("#add-des").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Designers")
+  commenceAdding(e, "Designers")
 })
 
 $("#add-pms").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Project Managers")
+  commenceAdding(e, "Project Managers")
 })
 
 $("#add-strat").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Strategy")
+  commenceAdding(e, "Strategy")
 })
 
 $("#add-da").click(function(e) {
-  e.preventDefault()
-  grayOutScreen()
-
-  addAll("Data & Analytics")
+  commenceAdding(e, "Data & Analytics")
 })
-
-
-
-// var jq = document.createElement('script');
-// jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
-// document.getElementsByTagName('head')[0].appendChild(jq);
