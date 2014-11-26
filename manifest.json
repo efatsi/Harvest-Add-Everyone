@@ -9,6 +9,10 @@
       "default_icon": "icon.png"
   },
 
+  "permissions": [
+    "https://cropduster.vigetx.com/api/labs"
+  ],
+
   "content_scripts": [
     {
       "matches": ["https://vigetlabs.harvestapp.com/projects/*/edit*"],
